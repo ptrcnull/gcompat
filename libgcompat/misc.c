@@ -1,6 +1,7 @@
 #include <stdlib.h>        /* abort, at_quick_exit */
 #include <sys/stat.h>      /* dev_t */
 #include <sys/sysmacros.h> /* major, makedev, minor */
+#include <unistd.h>        /* close */
 
 /**
  * Terminate a function in case of buffer overflow.
@@ -33,3 +34,8 @@ unsigned int gnu_dev_minor(dev_t dev)
 }
 
 void *__libc_stack_end = NULL;
+
+int __close(int fd)
+{
+	return close(fd);
+}
